@@ -1,0 +1,19 @@
+{
+    "name": "caresle/cartisan",
+    "description": "Simple clone of the artisan cli of laravel to learn how to make a cli",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Caresle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "caresle",
+            "email": "carabesle@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/dotenv": "^7.0"
+    }
+}
