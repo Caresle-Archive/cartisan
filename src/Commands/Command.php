@@ -13,4 +13,6 @@ class Command
     }
 
     public function use() {}
+
+    public function usage() {}
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Caresle\Commands\ListCommand;
+use Caresle\Commands\MakeCommand;
 use Caresle\Env\Environment;
 
 /**
@@ -14,4 +15,5 @@ Environment::load();
 
 $commands = [
     "list" => ListCommand::class,
+    "make" => MakeCommand::class,
 ];

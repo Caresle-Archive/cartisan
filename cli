@@ -23,4 +23,4 @@ if (!isset($commands[$command_passed])) {
 $command_name = $commands[$command_passed];
 $command_class = new $command_name();
 
-$command_class->use();
+$command_class->use($argv);
