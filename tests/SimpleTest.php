@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
+use Caresle\Commands\UsageCommand;
 use PHPUnit\Framework\TestCase;
 
 final class SimpleTest extends TestCase
 {
-    public function testForTesting(): void
+    public function testCLI(): void
     {
-        $string = 'my String for test';
+        $output = shell_exec('php cli');
 
-        $this->assertEquals('my String for test', $string);
+        UsageCommand::show_usage();
+
+        // $this->assertEquals($expected_output, $output);
     }
 }

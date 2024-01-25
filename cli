@@ -1,11 +1,26 @@
 #!/usr/bin/env php
 
 <?php
+use Caresle\Commands\UsageCommand;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 require_once __DIR__ . '/bootstrap.php';
 
+// Check argc number
+if ($argc <= 1) {
+    UsageCommand::show_usage();
+    return;
+}
 
-var_dump($argc);
-var_dump($argv);
+$command_passed = $argv[1];
+
+if (!isset($commands[$command_passed])) {
+    UsageCommand::show_usage();
+    return;
+}
+
+$command_name = $commands[$command_passed];
+$command_class = new $command_name();
+
+$command_class->use();

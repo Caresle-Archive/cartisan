@@ -8,4 +8,9 @@ class ListCommand extends Command
     {
         parent::__construct('list');
     }
+
+    public function use()
+    {
+        echo "Override";
+    }
 }
