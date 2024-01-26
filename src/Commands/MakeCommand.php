@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 namespace Caresle\Commands;
+use Caresle\Helpers\MakeHelpers;
 
 class MakeCommand extends Command
 {
@@ -24,12 +25,22 @@ class MakeCommand extends Command
         }
 
         $name = $arguments[2];
+        $option = $arguments[3] ?? "";
 
-        $template = __DIR__ . '/../../files/controller/ControllerTemplate.php';
+        $template_to_use = MakeHelpers::controller;
+
+        if ($option == "--empty")
+            $template_to_use = MakeHelpers::empty;
+
+        $template = __DIR__ . "/../../files/controller/$template_to_use.php";
         $generate = __DIR__ . '/../../generated/';
 
-        if (!file_exists($generate)) {
+        if (!file_exists($generate))
             mkdir($generate);
+
+        if (file_exists($generate . "$name.php")) {
+            echo "The file $name already exists";
+            return;
         }
 
         $code = file_get_contents($template);
@@ -44,7 +55,16 @@ class MakeCommand extends Command
         $str = <<<EOD
             Make command.
 
-            make <name>
+            make <name> <list-of-options>
+
+            Example:
+
+            make ControllerTest
+
+            Options:
+            Name\tDescription
+
+            --empty\tCreates a class with only the name
         EOD;
 
         echo $str;
